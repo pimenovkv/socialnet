@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}SocialNet{% endblock%}</title>
+    <link type="text/css" href="{% static 'userpage/css/styles.css' %}" rel="stylesheet" />
+</head>
+<body>
+
+<div class="sidemenu">
+{% block menu %}
+<!--    <a href="#">Меню</a>-->
+    {% for txt, ref in menu_items %}
+    <a href="{{ ref }}">{{ txt }}</a>
+    {% endfor %}
+{% endblock %}
+</div>
+
+<div class="main">
+{% block content %}
+    <h2>Заголовок</h2>
+    <p>Какой-то текст</p>
+    <p>Какой-то текст</p>
+    <p>Какой-то текст</p>
+{% endblock %}
+</div>
+
+</body>
+</html>

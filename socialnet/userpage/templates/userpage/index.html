@@ -1,0 +1,12 @@
+{% extends "userpage/base.html" %}
+
+{% block title %}{{ title | default:"Default User" }}{% endblock %}
+
+{% block content %}
+<h2>{{ username | default:"Default User" }}</h2>
+<p>Имя: {{ first_name | default:"Пользователь" }}</p>
+<p>Фамилия: {{ last_name | default:"По_умолчанию" }}</p>
+<p>E-mail: {{ email | default:"dafault@dafault.com" }}</p>
+<p>Возраст: {{ age | default:"99" }}</p>
+<p>О себе: {{ about | default:"Информация о себе" }}</p>
+{% endblock %}
