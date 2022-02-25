@@ -8,3 +8,6 @@ class UserInfo(models.Model):
     age = models.PositiveSmallIntegerField()
     photo = models.ImageField(upload_to='photos/')
     about = models.TextField(blank=True)
+
+    def full_name(self):
+        return f'{self.first_name} {self.last_name}'
