@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class UserInfo(models.Model):
@@ -8,6 +9,13 @@ class UserInfo(models.Model):
     age = models.PositiveSmallIntegerField()
     photo = models.ImageField(upload_to='photos/')
     about = models.TextField(blank=True)
+    friends = models.ManyToManyField('self', symmetrical=False)
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
 
     def full_name(self):
         return f'{self.first_name} {self.last_name}'
+
+    def get_absolute_url(self):
+        return reverse('user', kwargs={'user_id': self.pk})

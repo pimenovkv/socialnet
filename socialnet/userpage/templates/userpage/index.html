@@ -9,4 +9,9 @@
 <p>E-mail: {{ user_info.email | default:"dafault@dafault.com" }}</p>
 <p>Возраст: {{ user_info.age | default:"99" }}</p>
 <p>О себе: {{ user_info.about | default:"Информация о себе" }}</p>
+<br>
+<h3>Друзья</h3>
+{% for friend in user_info.friends.all %}
+<p><a href="{{ friend.get_absolute_url }}">{{ friend.full_name }}</a></p>
+{% endfor %}
 {% endblock %}
