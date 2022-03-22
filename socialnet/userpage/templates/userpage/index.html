@@ -4,6 +4,7 @@
 
 {% block content %}
 <h2>{{ user.get_full_name | default:"Default User" }}</h2>
+<p>Username: {{ user.username }}</p> <!--TODO: для отладки, удалить-->
 <p>Имя: {{ user.first_name | default:"Пользователь" }}</p>
 <p>Фамилия: {{ user.last_name | default:"По_умолчанию" }}</p>
 <p>E-mail: {{ user.email | default:"dafault@dafault.com" }}</p>

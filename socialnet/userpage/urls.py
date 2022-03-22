@@ -19,7 +19,7 @@ from .views import *
 from socialnet import settings
 
 urlpatterns = [
-    path('<int:user_id>', index, name='user'),
+    path('<str:username>', index, name='user'),
 ]
 
 if settings.DEBUG:

@@ -9,10 +9,10 @@ menu = [
 ]
 
 
-def index(request, user_id:int=0):
+def index(request, username):
     try:
-        user = User.objects.get(pk=user_id)
+        user = User.objects.get(username=username)
     except ObjectDoesNotExist:
-        return render(request, 'userpage/index.html', {'title': 'Моя страница', 'menu_items': menu})
+        return render(request, 'userpage/index.html', {'user': None, 'menu_items': menu})
 
     return render(request, 'userpage/index.html', {'user': user, 'menu_items': menu})

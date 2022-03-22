@@ -130,5 +130,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 ABSOLUTE_URL_OVERRIDES = {
-    'auth.user': lambda u: reverse('user', kwargs={'user_id': u.pk}),
+    'auth.user': lambda u: reverse('user', kwargs={'username': u.username}),
 }
