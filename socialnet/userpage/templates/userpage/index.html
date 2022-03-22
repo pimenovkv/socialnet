@@ -1,17 +1,17 @@
 {% extends "userpage/base.html" %}
 
-{% block title %}{{ user_info.full_name | default:"Default User" }}{% endblock %}
+{% block title %}{{ user.get_full_name | default:"Default User" }}{% endblock %}
 
 {% block content %}
-<h2>{{ user_info.full_name | default:"Default User" }}</h2>
-<p>Имя: {{ user_info.first_name | default:"Пользователь" }}</p>
-<p>Фамилия: {{ user_info.last_name | default:"По_умолчанию" }}</p>
-<p>E-mail: {{ user_info.email | default:"dafault@dafault.com" }}</p>
-<p>Возраст: {{ user_info.age | default:"99" }}</p>
-<p>О себе: {{ user_info.about | default:"Информация о себе" }}</p>
+<h2>{{ user.get_full_name | default:"Default User" }}</h2>
+<p>Имя: {{ user.first_name | default:"Пользователь" }}</p>
+<p>Фамилия: {{ user.last_name | default:"По_умолчанию" }}</p>
+<p>E-mail: {{ user.email | default:"dafault@dafault.com" }}</p>
+<p>Возраст: {{ user.userinfo.age | default:"99" }}</p>
+<p>О себе: {{ user.userinfo.about | default:"Информация о себе" }}</p>
 <br>
 <h3>Друзья</h3>
-{% for friend in user_info.friends.all %}
-<p><a href="{{ friend.get_absolute_url }}">{{ friend.full_name }}</a></p>
+{% for friend in user.userinfo.friends.all %}
+<p><a href="{{ friend.get_absolute_url }}">{{ friend.get_full_name }}</a></p>
 {% endfor %}
 {% endblock %}

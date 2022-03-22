@@ -1,21 +1,18 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.urls import reverse
 
 
 class UserInfo(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    email = models.EmailField()
-    age = models.PositiveSmallIntegerField()
-    photo = models.ImageField(upload_to='photos/')
-    about = models.TextField(blank=True)
-    friends = models.ManyToManyField('self', symmetrical=False)
+    user = models.OneToOneField(User, related_name='userinfo', on_delete=models.CASCADE, default=None, verbose_name='Пользователь')
+    age = models.PositiveSmallIntegerField(blank=True, verbose_name='Возраст')
+    photo = models.ImageField(upload_to='photos/', blank=True, verbose_name='Фото')
+    about = models.TextField(blank=True, verbose_name='О себе')
+    friends = models.ManyToManyField(User, related_name='friends', symmetrical=False, blank=True, verbose_name='Друзья')
 
     def __str__(self):
-        return f'{self.first_name} {self.last_name}'
+        return f'{self.user.first_name} {self.user.last_name}'
 
-    def full_name(self):
-        return f'{self.first_name} {self.last_name}'
-
-    def get_absolute_url(self):
-        return reverse('user', kwargs={'user_id': self.pk})
+    class Meta:
+        verbose_name = 'Информация о пользователе'
+        verbose_name_plural = 'Информация о пользователях'
